@@ -9,8 +9,13 @@ router.get('/', (req, res ,next) => {
 });
 
 router.post('/', (req, res, next) => {
+    const list = {
+        todoId: req.body.todoId,
+
+    };
     res.status(201).json({
-        message: 'List were created'
+        message: 'List were created',
+        list: list
     });
 });
 

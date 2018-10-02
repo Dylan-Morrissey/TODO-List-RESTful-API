@@ -9,8 +9,13 @@ router.get('/', (req, res ,next) => {
 });
 
 router.post('/', (req, res ,next) => {
+    const todo = {
+        name: req.body.name,
+        activity: req.body.activity
+    };
     res.status(201).json({
-            message: 'Handling POST requests to /todo'
+            message: 'Handling POST requests to /todo',
+        createdProduct: todo
         }
     )
 });
