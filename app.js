@@ -1,10 +1,15 @@
 const express = require('express');
 const app = express();
 const morgan = require('morgan');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 const todoRoutes = require('./api/routes/todo');
 const listRoutes = require('./api/routes/list');
+
+mongoose.connect('mongodb+srv://dylan:Ilikecheese1$@node-rest-todo-wpazy.mongodb.net/test?retryWrites=true' ,
+    {useNewUrlParser: true});
+mongoose.Promise = global.Promise;
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: false}));

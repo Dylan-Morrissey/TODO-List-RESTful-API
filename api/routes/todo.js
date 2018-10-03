@@ -6,10 +6,23 @@ const Todo = require('../models/todo');
 
 router.get('/', (req, res ,next) => {
     Todo.find().find()
+        .select('name todo _id')
         .exec()
         .then(docs => {
-            console.log(docs);
-            res.status(200).json(docs);
+            const response = {
+                count: docs.length,
+                todo: docs.map(doc => {
+                    return {
+                        name: doc.name,
+                        task: doc.name,
+                        _id: doc._id,
+                        request: {
+                            type: 'GET',
+                            url: 'http://localhost:3000/todo/' + doc._id
+                        }
+                    }
+                })
+            };
         })
         .catch(err => {
             console.log(err);
